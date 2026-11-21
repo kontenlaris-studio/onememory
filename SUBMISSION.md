@@ -10,8 +10,9 @@ Registered: HackerEarth, team "Ooblek's Team" (solo), profile hackerearth.com/@k
 - [x] README + ARCHITECTURE (Meko mapping, judging mapping)
 - [x] Generate Meko API key (Settings → Security) → verify live MCP tool names on the Connect page → run one live teach/search/promote cycle and record it (21 Nov 2026, 6/6 OK, `data/live-test.json`)
 - [x] Push to a public GitHub repo — https://github.com/kontenlaris-studio/onememory
-- [ ] Record demo video < 5 min (script below), upload, paste link in HackerEarth submission
-- [ ] Submit on HackerEarth before deadline; re-check prize T&C (payment/KYC terms) on the official rules before accepting any prize step
+- [x] Record demo video < 5 min (script below), upload, paste link in HackerEarth submission — video 1:59, YouTube unlisted: https://www.youtube.com/watch?v=ZmMjFm_CbLc (21 Nov 2026)
+- [x] Submit on HackerEarth — **PUBLISHED 21 Nov 2026, 13:57 WIB** (status "Published", lengkap dgn Presentation PDF + Source Code ZIP terunggah; dasbor: .../dashboard/4e3472e/submission/hackathon-415/)
+- [ ] Re-check prize T&C (payment/KYC terms) on the official rules before accepting any prize step — penjurian 18–24 Jan 2027, pemenang Feb 2027
 
 ## Demo video script (< 5 min)
 

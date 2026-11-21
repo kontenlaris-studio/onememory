@@ -1,0 +1,58 @@
+{
+  "session1": {
+    "agent": "coder-claude",
+    "harness": "Claude Code",
+    "cited": [
+      "STD-NAME",
+      "STD-ERR",
+      "STD-TEST"
+    ],
+    "compliance": {
+      "snake_case_name": true,
+      "no_silent_except": true,
+      "has_validation": false,
+      "logs_errors": true
+    }
+  },
+  "review": {
+    "findings": [
+      {
+        "rule": "LEARN-VALID",
+        "issue": "missing input validation on external id"
+      }
+    ],
+    "standards_seen": [
+      "STD-NAME",
+      "STD-ERR"
+    ]
+  },
+  "promotion": {
+    "status": "promoted",
+    "id": "K5"
+  },
+  "session2": {
+    "agent": "coder-codex",
+    "harness": "Codex",
+    "cited": [
+      "STD-NAME",
+      "K5",
+      "STD-ERR",
+      "STD-TEST"
+    ],
+    "compliance": {
+      "snake_case_name": true,
+      "no_silent_except": true,
+      "has_validation": true,
+      "logs_errors": true
+    }
+  },
+  "compliance_s1_pass": 3,
+  "compliance_s2_pass": 4,
+  "tokens": {
+    "baseline_stuffing_2_sessions": 6604,
+    "engineered_slice_2_sessions": 171,
+    "savings_pct": 97.4
+  },
+  "traces": 71,
+  "knowledge_items": 5
+}

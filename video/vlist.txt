@@ -1,0 +1,13 @@
+file '/home/hatch/workspace/contextcon-onememory/video/slide0.png'
+duration 21.64
+file '/home/hatch/workspace/contextcon-onememory/video/slide1.png'
+duration 18.95
+file '/home/hatch/workspace/contextcon-onememory/video/slide2.png'
+duration 15.81
+file '/home/hatch/workspace/contextcon-onememory/video/slide3.png'
+duration 22.12
+file '/home/hatch/workspace/contextcon-onememory/video/slide4.png'
+duration 19.07
+file '/home/hatch/workspace/contextcon-onememory/video/slide5.png'
+duration 23.27
+file '/home/hatch/workspace/contextcon-onememory/video/slide5.png'

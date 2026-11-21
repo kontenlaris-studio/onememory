@@ -47,14 +47,22 @@ python3 onememory.py --demo       # full ADLC story as JSON
 No dependencies (Python stdlib), no paid APIs, no LLM required for the demo —
 agents are deterministic so compliance and token numbers are verifiable.
 
-## Live Meko mode
+## Live Meko mode — VERIFIED 21 Nov 2026
 
-`MekoClient` speaks MCP JSON-RPC to `https://mcp.mekodata.ai/mcp`. Set
-`MEKO_API_KEY` (Meko dashboard → Settings → Security → Generate API key) and
-the same flows run against the real datapack (`meko_default_datapack`).
-Without a key the client refuses and the local datapack — same semantics:
-relevance-scored search (0–1) with gap explanation, private→shared promotion,
-decision traces — is used, so the project is fully demoable offline.
+`MekoClient` speaks MCP JSON-RPC (streamable HTTP, session handshake) to
+`https://mcp.mekodata.ai/mcp`, using the official tool names from Meko's docs
+(57 tools listed by the server). `live_test.py` ran the full cycle against the
+real account and passed **6/6**: `conversation_create` → `datapack_list`
+(real datapack found) → `memory_add` (STD-ERR stored) → `memory_search`
+(same memory retrieved) → `context_search` (retrieved via context) →
+`memory_promote` (promoted, `inserted_ids` returned). Results recorded in
+`data/live-test.json` and `data/mcp-tools.json`.
+
+To reproduce: put `MEKO_API_KEY=<your key>` in a local `.env` (git-ignored,
+mode 0600) and run `python3 live_test.py`. Without a key the client refuses
+and the local datapack — same semantics: relevance-scored search (0–1) with
+gap explanation, private→shared promotion, decision traces — is used, so the
+project is fully demoable offline.
 
 ## Layout
 

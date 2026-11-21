@@ -40,9 +40,11 @@ AUDIT      every step = decision trace → "why?" query              │
 - **Deterministic demo.** Simulated agents make the before/after measurable
   (3/4 → 4/4 compliance) and the selftest reproducible (11/11) without any
   paid LLM call. Live mode swaps the store, not the story.
-- **Honest limits.** Tool names on the live MCP endpoint must be re-verified
-  against the Meko Connect page once an API key exists; until then live calls
-  are blocked by design rather than faked.
+- **Live-verified.** Tool names and argument schemas were read from the real
+  server via `tools/list` (57 tools) and the full teach → search → promote
+  cycle was executed against the production Meko account on 21 Nov 2026
+  (`live_test.py`, 6/6 OK). The API key lives only in a local `.env`
+  (mode 0600, git-ignored) and is never printed or committed.
 
 ## Judging criteria mapping (published weights)
 

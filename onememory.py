@@ -110,24 +110,73 @@ class LocalDatapack:
 
 class MekoClient:
     """Klien MCP live. Tanpa API key: menolak (fallback lokal dipakai).
-    Payload JSON-RPC tools/call; nama tool context diverifikasi ke halaman
-    Connect Meko saat API key digenerate (Settings -> Security)."""
+    Nama tool TERVERIFIKASI 21 Nov 2026 dari docs resmi Meko
+    (docs.mekodata.ai/reference/mcp-server — 32 tools), al.:
+    context_search, memory_add, memory_search, memory_promote,
+    datapack_list, datapack_search, knowledgebase_search, artifact_put.
+    Header User-Agent wajib (dokumentasi Datapack API)."""
     def __init__(self, api_key=None):
         self.api_key = api_key if api_key is not None else os.environ.get("MEKO_API_KEY", "")
         self.url = MEKO_MCP_URL
+        self.session_id = None
 
     def payload(self, tool, arguments):
         return {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
                 "params": {"name": tool, "arguments": arguments}}
 
+    def _headers(self):
+        h = {"Content-Type": "application/json",
+             "Accept": "application/json, text/event-stream",
+             "User-Agent": "onememory-contextcon/1.0",
+             "Authorization": f"Bearer {self.api_key}"}
+        if self.session_id:
+            h["Mcp-Session-Id"] = self.session_id
+        return h
+
+    def _post(self, obj):
+        req = urllib.request.Request(self.url, data=json.dumps(obj).encode(), headers=self._headers())
+        with urllib.request.urlopen(req, timeout=30) as r:
+            sid = r.headers.get("Mcp-Session-Id")
+            if sid:
+                self.session_id = sid
+            raw = r.read().decode()
+        if "data:" in raw[:64] or "\ndata:" in raw:  # SSE stream -> ambil payload data terakhir
+            payloads = [ln[5:].strip() for ln in raw.splitlines() if ln.startswith("data:")]
+            return json.loads(payloads[-1]) if payloads else {}
+        return json.loads(raw) if raw.strip() else {}
+
+    def _ensure_session(self):
+        if self.session_id:
+            return
+        self._post({"jsonrpc": "2.0", "id": 0, "method": "initialize",
+                    "params": {"protocolVersion": "2025-03-26", "capabilities": {},
+                               "clientInfo": {"name": "onememory", "version": "1.0"}}})
+        try:
+            self._post({"jsonrpc": "2.0", "method": "notifications/initialized"})
+        except Exception:
+            pass
+
     def call(self, tool, arguments):
         if not self.api_key:
             return {"status": "blocked", "reason": "MEKO_API_KEY kosong - pakai LocalDatapack"}
-        req = urllib.request.Request(self.url, data=json.dumps(self.payload(tool, arguments)).encode(),
-                                     headers={"Content-Type": "application/json",
-                                              "Authorization": f"Bearer {self.api_key}"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return {"status": "ok", "data": json.loads(r.read().decode())}
+        self._ensure_session()
+        return {"status": "ok", "data": self._post(self.payload(tool, arguments))}
+
+    # pemetaan semantik datapack lokal -> tool MCP resmi
+    def search(self, query):
+        return self.call("context_search", {"query": query})
+
+    def remember(self, text):
+        return self.call("memory_add", {"content": text})
+
+    def recall(self, query):
+        return self.call("memory_search", {"query": query})
+
+    def promote(self, memory_id):
+        return self.call("memory_promote", {"memory_id": memory_id})
+
+    def datapacks(self):
+        return self.call("datapack_list", {})
 
 # ---------------------------------------------------------------- agen coding
 STANDARDS = [

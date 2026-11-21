@@ -1,0 +1,94 @@
+{
+  "context_search": {
+    "required": [
+      "query",
+      "conversation_id"
+    ],
+    "props": [
+      "query",
+      "conversation_id",
+      "agent_id",
+      "datapack_id",
+      "limit",
+      "force_source",
+      "prompt",
+      "verify",
+      "conversation_hit_distance"
+    ]
+  },
+  "memory_add": {
+    "required": [
+      "text",
+      "conversation_id"
+    ],
+    "props": [
+      "text",
+      "conversation_id",
+      "agent_id",
+      "run_id",
+      "metadata",
+      "messages",
+      "datapack_id"
+    ]
+  },
+  "memory_search": {
+    "required": [
+      "query",
+      "conversation_id"
+    ],
+    "props": [
+      "query",
+      "conversation_id",
+      "agent_id",
+      "limit",
+      "datapack_id",
+      "run_id"
+    ]
+  },
+  "memory_promote": {
+    "required": [
+      "conversation_id",
+      "memory_ids"
+    ],
+    "props": [
+      "conversation_id",
+      "memory_ids",
+      "agent_id",
+      "datapack_id"
+    ]
+  },
+  "conversation_create": {
+    "required": [],
+    "props": [
+      "agent_id",
+      "run_id",
+      "title",
+      "metadata",
+      "session_id",
+      "datapack_id"
+    ]
+  },
+  "datapack_list": {
+    "required": [],
+    "props": [
+      "conversation_id",
+      "datapack_id",
+      "query",
+      "limit"
+    ]
+  },
+  "datapack_search": {
+    "required": [],
+    "props": [
+      "conversation_id",
+      "query",
+      "name",
+      "limit",
+      "cursor",
+      "grant",
+      "sort",
+      "include_total",
+      "datapack_id"
+    ]
+  }
+}

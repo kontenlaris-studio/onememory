@@ -8,8 +8,8 @@ Registered: HackerEarth, team "Ooblek's Team" (solo), profile hackerearth.com/@k
 - [x] Registered on HackerEarth + free Meko account (FREE tier, datapack `meko_default_datapack`)
 - [x] Working code + selftest 11/11 + recorded demo (`data/demo-output.json`)
 - [x] README + ARCHITECTURE (Meko mapping, judging mapping)
-- [ ] Generate Meko API key (Settings → Security) → verify live MCP tool names on the Connect page → run one live teach/search/promote cycle and record it
-- [ ] Push to a public GitHub repo (github.com/kontenlaris-studio) with setup instructions
+- [x] Generate Meko API key (Settings → Security) → verify live MCP tool names on the Connect page → run one live teach/search/promote cycle and record it (21 Nov 2026, 6/6 OK, `data/live-test.json`)
+- [x] Push to a public GitHub repo — https://github.com/kontenlaris-studio/onememory
 - [ ] Record demo video < 5 min (script below), upload, paste link in HackerEarth submission
 - [ ] Submit on HackerEarth before deadline; re-check prize T&C (payment/KYC terms) on the official rules before accepting any prize step
 
